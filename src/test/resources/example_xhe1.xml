@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xhe:XHE xmlns:xha="http://docs.oasis-open.org/bdxr/ns/XHE/1/AggregateComponents"
+ xmlns:xhb="http://docs.oasis-open.org/bdxr/ns/XHE/1/BasicComponents"
+ xmlns:xhe="http://docs.oasis-open.org/bdxr/ns/XHE/1/ExchangeHeaderEnvelope"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <xhb:XHEVersionID>1.0</xhb:XHEVersionID>
+    <xha:Header>
+        <xhb:ID>0f1488ae-a8ed-431d-a93d-3b76d2ffbfff</xhb:ID>
+        <xhb:CreationDateTime>2021-01-12T18:13:51.011+02:00</xhb:CreationDateTime>
+        <xha:FromParty>
+            <xha:PartyIdentification>
+                <xhb:ID>partya.examples.holodeck-b2b.com</xhb:ID>
+            </xha:PartyIdentification>
+        </xha:FromParty>
+        <xha:ToParty>
+            <xha:PartyIdentification>
+                <xhb:ID>partyb.examples.holodeck-b2b.com</xhb:ID>
+            </xha:PartyIdentification>
+            <xha:PartyIdentification>
+                <xhb:ID schemeID="urn:schemeID:example">0002</xhb:ID>
+            </xha:PartyIdentification>
+        </xha:ToParty>
+        <xha:ToParty>
+            <xha:PartyIdentification>
+                <xhb:ID>partyX.test.examples.com</xhb:ID>
+            </xha:PartyIdentification>
+        </xha:ToParty>
+    </xha:Header>
+    <xha:Payloads>
+        <xha:Payload>
+            <xhb:ID>0f1488ae-a8ed-431d-a93d-3b76d2ffbfff-1</xhb:ID>
+            <xhb:ContentTypeCode>application/pdf</xhb:ContentTypeCode>
+            <xhb:InstanceEncryptionIndicator>false</xhb:InstanceEncryptionIndicator>
+            <xha:PayloadExternalReference>
+                <xhb:ID>http://some.documentstorage.service.com/bdfd56cd74e340bc69050d0734e276c3e03f670f/0f1488ae-a8ed-431d-a93d-3b76d2ffbfff-1.pdf</xhb:ID>
+                <xhb:AvailabilityEndDateTime>2021-01-12T19:00:00Z</xhb:AvailabilityEndDateTime>
+            </xha:PayloadExternalReference>
+        </xha:Payload>
+    </xha:Payloads>
+</xhe:XHE>

@@ -1,0 +1,4 @@
+<complexElement language="English" xml:ns="http://test.xades.holodeck-b2b.org/schemas/helloworld">
+	<childInSameNS>Hello World!</childInSameNS>
+	<other:childOtherNS xmlns:other="http://test.xades.holodeck-b2b.org/schemas/other" taal="NL">Hallo Wereld!</other:childOtherNS>
+</complexElement>
