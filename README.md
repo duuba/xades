@@ -31,5 +31,7 @@ Version numbering follows the [Semantic versioning](http://semver.org/) approach
 ## License
 Duuba XAdES is licensed under the Lesser General Public License V3 (LGPLv3) which is included in the license.txt in the root of the project.
 
+Elements of the Bouncy Castle library provided by [The Legion of the Bouncy Castle Inc.](http://www.bouncycastle.org), see the bc_license.txt file.
+
 ## Support
 Commercial Duuba XAdES support is provided by Chasquis. Contact [Chasquis-consulting.com](http://chasquis-consulting.com/) for more information.
