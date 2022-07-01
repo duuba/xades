@@ -17,7 +17,7 @@ Issue tracker https://github.com/duuba/xades/issues
   
 
 ## Features
-- Creates XAdes baseline signatures
+- Creates XAdES baseline signatures
 - can be used for signing EESSI documents
 - Fast - signing a 1.2GB document takes 9.4 seconds
 - Compact 
