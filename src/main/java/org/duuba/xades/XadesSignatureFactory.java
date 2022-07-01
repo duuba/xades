@@ -60,7 +60,7 @@ import org.w3c.dom.Node;
  * <b>XAdES versions</b>
  * <p>This factory supports both ETSI specifications of XAdES, <i>TS 101 903 V1.4.1</i> and <i>EN 319 132 V1.1.1</i>. 
  * The main difference between these two versions is that for some of the qualifying properties EN 319 132 defines 
- * additional data or uses another representation of the same data. It therefore has included new versions of the 
+ * additional data or uses another representation of the same data. It therefore includes new versions of the 
  * corresponding XML element declarations in the XML schema (the elements with "V2" suffix). There are also different 
  * classes to represent the different versions of these properties. This factory will return the correct implementation 
  * based on the set version when creating the factory instance.  
