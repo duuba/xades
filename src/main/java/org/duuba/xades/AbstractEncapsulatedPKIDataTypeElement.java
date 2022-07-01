@@ -21,6 +21,8 @@ import javax.xml.crypto.XMLCryptoContext;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
 import org.apache.xml.security.utils.XMLUtils;
+import org.bouncycastle.util.Arrays;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * Is a base class for the representation of elements that are of type <code>EncapsulatedPKIDataType</code> as defined 
@@ -36,7 +38,7 @@ import org.apache.xml.security.utils.XMLUtils;
  * &lt;/xsd:complexType&gt;
  * </pre></code> 
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public abstract class AbstractEncapsulatedPKIDataTypeElement extends XadesElement {
 
@@ -93,19 +95,35 @@ public abstract class AbstractEncapsulatedPKIDataTypeElement extends XadesElemen
 		return encoding;
 	}
 	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		
+		AbstractEncapsulatedPKIDataTypeElement other = (AbstractEncapsulatedPKIDataTypeElement) o;
+		return Arrays.areEqual(this.data, other.data) && this.encoding == other.encoding
+				&& Utils.nullSafeEqual(this.id, other.id);
+	}
 	
 	@Override
 	protected void writeContent(XmlWriter xwriter, String nsPrefix, String dsPrefix, XMLCryptoContext context)
 			throws MarshalException {
 	
 		// Write attributes
-		if (id != null && !id.isEmpty())
+		if (!Utils.isNullOrEmpty(id))
 			xwriter.writeIdAttribute("", Constants.XADES_132_NS_URI, "Id", id);    
 		if (encoding != null)
 			xwriter.writeAttribute("", Constants.XADES_132_NS_URI, "Encoding", encoding.uri());
 		// write the base64 encoded bytes
-		xwriter.writeCharacters(XMLUtils.encodeToString(data));
-		
+		xwriter.writeCharacters(XMLUtils.encodeToString(data));		
 	}
 
 }

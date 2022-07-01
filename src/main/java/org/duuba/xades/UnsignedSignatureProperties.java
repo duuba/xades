@@ -21,6 +21,7 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * A representation of the <code>UnsignedSignatureProperties</code> element as defined in the <i>ETSI EN 319 132-1
@@ -56,7 +57,7 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * <p>A <code>UnsignedSignatureProperties</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newUnsignedSignatureProperties} methods. 
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class UnsignedSignatureProperties extends XadesElement {
 
@@ -90,6 +91,25 @@ public class UnsignedSignatureProperties extends XadesElement {
     	return sigPolicyStore;
     }
     
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+	
+		UnsignedSignatureProperties other = (UnsignedSignatureProperties) o;
+		
+		return Utils.nullSafeEqual(this.id, other.id) 
+			&& Utils.nullSafeEqual(this.sigPolicyStore, other.sigPolicyStore);
+	}
+
     @Override
     protected QName getName() {
     	return ELEMENT_NAME;

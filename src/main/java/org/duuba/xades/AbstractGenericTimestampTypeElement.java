@@ -24,6 +24,7 @@ import javax.xml.crypto.dsig.CanonicalizationMethod;
 
 import org.apache.jcp.xml.dsig.internal.dom.DOMCanonicalizationMethod;
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * Is a base class for the representation of elements that are of a type derived from the <code>GenericTimestampType
@@ -46,7 +47,7 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * </xsd:complexType>
  * </pre></code> 
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public abstract class AbstractGenericTimestampTypeElement extends XadesElement {
 	
@@ -116,30 +117,55 @@ public abstract class AbstractGenericTimestampTypeElement extends XadesElement {
 		return xmlTS;
 	}
 	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * <p>NOTE: As the other of the child elements may be semantically relevant the child elements must be in the same
+	 * order to be considered equal. 
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		
+		AbstractGenericTimestampTypeElement other = (AbstractGenericTimestampTypeElement) o;
+		
+		return Utils.nullSafeEqual(this.id, other.id)
+			&& Utils.areEqual(this.includes, other.includes)
+			&& Utils.areEqual(this.referenceInfos, other.referenceInfos)
+			&& Utils.nullSafeEqual(this.c14nMethod, other.c14nMethod)
+			&& Utils.areEqual(this.encapsulatedTS, other.encapsulatedTS)
+			&& Utils.areEqual(this.xmlTS, other.xmlTS);
+	}
+	
 	@Override
 	protected void writeContent(XmlWriter xwriter, String nsPrefix, String dsPrefix, XMLCryptoContext context)
 																							throws MarshalException {
 
 		// Write id attribute
-		if (id != null && !id.isEmpty())
+		if (!Utils.isNullOrEmpty(id))
 			xwriter.writeIdAttribute("", null, "Id", id);
 		
 		// Write child elements
-		if (includes != null && !includes.isEmpty()) {
+		if (!Utils.isNullOrEmpty(includes)) {
 			for(Include i : includes)
 				i.marshal(xwriter, dsPrefix, context);
 		}
-		if (referenceInfos != null && !referenceInfos.isEmpty()) {
+		if (!Utils.isNullOrEmpty(referenceInfos)) {
 			for(ReferenceInfo r : referenceInfos)
 				r.marshal(xwriter, dsPrefix, context);
 		}
 		if (c14nMethod != null)
 			c14nMethod.marshal(xwriter, dsPrefix, context);
-		if (encapsulatedTS != null && !encapsulatedTS.isEmpty()) {
+		if (!Utils.isNullOrEmpty(encapsulatedTS)) {
 			for(EncapsulatedTimeStamp ts : encapsulatedTS)
 				ts.marshal(xwriter, dsPrefix, context);
 		}
-		if (xmlTS != null && !xmlTS.isEmpty()) {
+		if (!Utils.isNullOrEmpty(xmlTS)) {
 			for(XMLTimeStamp ts : xmlTS)
 				ts.marshal(xwriter, dsPrefix, context);
 		}		

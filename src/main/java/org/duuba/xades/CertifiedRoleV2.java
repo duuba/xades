@@ -25,6 +25,7 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 import org.w3c.dom.Node;
 
 /**
@@ -50,7 +51,7 @@ import org.w3c.dom.Node;
  * XadesSignatureFactory#newCertifiedRole} methods on a factory instance configured for Xades version {@link 
  * XadesVersion#EN_319_132_V111}.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class CertifiedRoleV2 extends XadesElement implements CertifiedRole {
 	private final static QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "CertifiedRole");
@@ -77,14 +78,31 @@ public class CertifiedRoleV2 extends XadesElement implements CertifiedRole {
 	
 	public AbstractAnyTypeElement getOtherAttributeCertificate() {
 		return otherCert;
-	}
-	
+	}	
 
 	@Override
 	protected QName getName() {
 		return ELEMENT_NAME;
 	}
 
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		
+		CertifiedRoleV2 other = (CertifiedRoleV2) o;
+		return Utils.nullSafeEqual(this.x509Cert, other.x509Cert) 
+				&& Utils.nullSafeEqual(this.otherCert, other.otherCert);
+	}
+	
 	@Override
 	protected void writeContent(XmlWriter xwriter, String nsPrefix, String dsPrefix, XMLCryptoContext context)
 							throws MarshalException {

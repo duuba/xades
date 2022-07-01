@@ -24,6 +24,7 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 import org.w3c.dom.Node;
 
 /**
@@ -50,7 +51,7 @@ import org.w3c.dom.Node;
  * <p>A <code>SignedSignatureProperties</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newSignedSignatureProperties} methods.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class SignedSignatureProperties extends XadesElement {
 
@@ -139,6 +140,31 @@ public class SignedSignatureProperties extends XadesElement {
 	List<Node> getOtherContent() {
 		return otherContent;
 	}
+	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		
+		SignedSignatureProperties other = (SignedSignatureProperties) o;
+		
+		return Utils.nullSafeEqual(this.id, other.id)
+			&& Utils.nullSafeEqual(this.certInfo, other.certInfo)
+			&& Utils.nullSafeEqual(this.signaturePolicy, other.signaturePolicy)
+			&& Utils.nullSafeEqual(this.signerRole, other.signerRole)
+			&& Utils.nullSafeEqual(this.productionPlace, other.productionPlace)
+			&& Utils.nullSafeEqual(this.signingTime, other.signingTime)
+			&& Utils.areEqual(this.otherContent, other.otherContent);			
+	}
+
 	
 	@Override
 	protected QName getName() {

@@ -27,7 +27,7 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * Is a base class for the Xades specific elements in a signature to ensure consistent namespace prefixes when the DOM
  * tree is created.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public abstract class XadesElement extends DOMStructure {
 
@@ -41,7 +41,7 @@ public abstract class XadesElement extends DOMStructure {
 	protected abstract QName getName();
 	
 	/**
-	 * Writes the elements content, i.e. attributes and child elements to the document tree. The element start and end
+	 * Writes the element's content, i.e. attributes and child elements to the document tree. The element start and end
 	 * are done by this base class. 
 	 * 
 	 * @param xwriter		XML Writer to create the document tree 
@@ -62,5 +62,24 @@ public abstract class XadesElement extends DOMStructure {
 		xwriter.writeStartElement(nsPrefix, elementName.getLocalPart(), nsURI);		
 		writeContent(xwriter, nsPrefix, dsPrefix, context);		
 		xwriter.writeEndElement();
+	}
+	
+	/**
+	 * Base implementation of {@link Object#equals(Object)} that checks if the other object is an instance of the same 
+	 * class (and hence of <code>XadesElement</code>) and has the same QName as the current instance. 
+	 * 
+	 * @param o		the other object to compare with
+	 * @return		<code>true<code> iff <code>o</code> is of the same type and has the same qualified name
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (o == null)
+			return false;
+		if (!this.getClass().equals(o.getClass()))
+			return false;
+		else if (!getName().equals(((XadesElement) o).getName()))
+			return false;
+		else
+			return true;
 	}
 }

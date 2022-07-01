@@ -22,6 +22,7 @@ import javax.xml.crypto.MarshalException;
 import javax.xml.crypto.XMLCryptoContext;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * Is a base class for the representation of elements that are of type <code>ObjectIdentifierType</code> as defined in 
@@ -54,7 +55,7 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * &lt;/xsd:complexType&gt;
  * </code></pre>
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public abstract class AbstractObjectIdentifierTypeElement extends XadesElement implements IObjectIdentifier {
 
@@ -106,6 +107,27 @@ public abstract class AbstractObjectIdentifierTypeElement extends XadesElement i
 		return docReferences;
 	}
 		
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		
+		AbstractObjectIdentifierTypeElement other = (AbstractObjectIdentifierTypeElement) o;
+		
+		return Utils.nullSafeEqual(this.identifier, other.identifier)
+			&& this.qualifier == other.qualifier
+			&& Utils.nullSafeEqual(this.description, other.description)
+			&& Utils.areEqual(this.docReferences, other.docReferences);
+	}
+	
 	@Override
 	protected void writeContent(XmlWriter xwriter, String nsPrefix, String dsPrefix, XMLCryptoContext context)
 			throws MarshalException {
@@ -114,13 +136,15 @@ public abstract class AbstractObjectIdentifierTypeElement extends XadesElement i
 		xwriter.writeStartElement(nsPrefix, "Identifier", Constants.XADES_132_NS_URI);        
         if (qualifier != null)
         	xwriter.writeAttribute("", Constants.XADES_132_NS_URI, "Qualifier", qualifier.toString());
+        xwriter.writeCharacters(identifier);
+        xwriter.writeEndElement();
         
 		// create and append Description element
-        if (description != null && !description.isEmpty())
+        if (!Utils.isNullOrEmpty(description))
         	xwriter.writeTextElement(nsPrefix, "Description", Constants.XADES_132_NS_URI, description);	
 		
         // create and append DocumentReferences and child elements
-        if (docReferences != null && !docReferences.isEmpty()) {
+        if (!Utils.isNullOrEmpty(docReferences)) {
         	xwriter.writeStartElement(nsPrefix, "DocumentationReferences", Constants.XADES_132_NS_URI);
         	for (String dr : docReferences)
         		xwriter.writeTextElement(nsPrefix, "DocumentationReference", Constants.XADES_132_NS_URI, dr);

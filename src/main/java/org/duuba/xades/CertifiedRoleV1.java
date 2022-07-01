@@ -36,7 +36,7 @@ import javax.xml.namespace.QName;
  * XadesSignatureFactory#newCertifiedRole} methods on a factory instance configured for Xades version {@link 
  * XadesVersion#TS_101_903_V141}.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class CertifiedRoleV1 extends AbstractEncapsulatedPKIDataTypeElement implements CertifiedRole {
 	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "CertifiedRole", 

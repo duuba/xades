@@ -24,9 +24,9 @@ import org.w3c.dom.Node;
 
 /**
  * A representation of the <code>XMLTimeStamp</code> element defined in the <code>GenericTimestampType</code> 
- * complex type as specified in  <i>ETSI TS 101 903 V1.4.1</i> and <i>ETSI EN 319 132-1 V1.1.1</i>. 
+ * complex type as specified in  <i>ETSI TS 101 903 V1.4.1</i> and <i>ETSI EN 319 132 V1.1.1</i>. 
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  * @see AbstractGenericTimestampTypeElement
  */ 
 public class XMLTimeStamp extends AbstractAnyTypeElement {

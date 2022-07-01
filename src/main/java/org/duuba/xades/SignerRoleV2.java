@@ -23,6 +23,7 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * A representation of the <code>SignerRoleV2</code> element as defined in the <i>ETSI EN 319 132 V1.1.1</i>  standard. 
@@ -36,9 +37,30 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * 		&lt;xsd:element ref="SignedAssertions" minOccurs="0"/&gt;
  * 	&lt;/xsd:sequence&gt;
  * &lt;/xsd:complexType&gt;
+ * 
  * &lt;xsd:element name="ClaimedRoles" type="ClaimedRolesListType"/&gt;
  * &lt;xsd:element name="CertifiedRolesV2" type="CertifiedRolesListTypeV2"/&gt;
  * &lt;xsd:element name="SignedAssertions" type="SignedAssertionsListType"/&gt;
+ * 
+ * &lt;xsd:complexType name="ClaimedRolesListType"&gt; 
+ *  &lt;xsd:sequence&gt;
+ * 		&lt;xsd:element name="ClaimedRole" type="AnyType" maxOccurs="unbounded"/&gt; 
+ *  &lt;/xsd:sequence&gt;
+ * &lt;/xsd:complexType&gt;
+ * 
+ * &lt;xsd:complexType name="CertifiedRolesListTypeV2"&gt; 
+ *  &lt;xsd:sequence&gt;
+ * 		&lt;xsd:element name="CertifiedRole" type="CertifiedRoleTypeV2" maxOccurs="unbounded"/&gt; 
+ *  &lt;/xsd:sequence&gt;
+ * &lt;/xsd:complexType&gt;
+ * 
+ * &lt;xsd:complexType name="CertifiedRoleTypeV2"&gt; 
+ *  &lt;xsd:choice&gt;
+ * 		&lt;xsd:element ref="X509AttributeCertificate"/&gt;
+ * 		&lt;xsd:element ref="OtherAttributeCertificate"/&gt; 
+ *  &lt;/xsd:choice&gt;
+ * &lt;/xsd:complexType&gt;
+ * 
  * &lt;xsd:complexType name="SignedAssertionsListType"&gt;
  * 	&lt;xsd:sequence&gt;
  * 		&lt;xsd:element ref="SignedAssertion" maxOccurs="unbounded"/&gt;
@@ -50,11 +72,11 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * XadesSignatureFactory#newSignerRole} methods on a factory instance configured for Xades version {@link 
  * XadesVersion#EN_319_132_V111}.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class SignerRoleV2 extends SignerRole {
 	
-	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "SignerRole", 
+	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "SignerRoleV2", 
 															Constants.XADES_132_NS_PREFIX);
 	
 	protected List<SignedAssertion>	assertions;
@@ -63,6 +85,22 @@ public class SignerRoleV2 extends SignerRole {
 				 final List<SignedAssertion> assertions) {
 		super(claimedRoles, certifiedRoles);
 		this.assertions = assertions;
+	}
+	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+	
+		return Utils.areEqual(this.assertions, ((SignerRoleV2) o).assertions);
 	}
 	
 	@Override
@@ -82,7 +120,7 @@ public class SignerRoleV2 extends SignerRole {
 			xwriter.writeEndElement();
 		}
 		// write CertifiedRoles element
-		if (claimed != null && !claimed.isEmpty()) {
+		if (certified != null && !certified.isEmpty()) {
 			xwriter.writeStartElement(nsPrefix, "CertifiedRolesV2", Constants.XADES_132_NS_URI);
 			for (CertifiedRole r : certified)
 				((CertifiedRoleV2) r).marshal(xwriter, dsPrefix, context);

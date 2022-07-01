@@ -22,7 +22,7 @@ import java.util.List;
  * Is an abstraction of the <code>ObjectIdentifierType</code> as defined in the Xades specifications. The interface is
  * introduced to allow easy transfer of object identifiers between the Xades and external classes. 
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  * @see AbstractObjectIdentifierTypeElement
  */
 public interface IObjectIdentifier {

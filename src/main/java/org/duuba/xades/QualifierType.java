@@ -27,7 +27,7 @@ package org.duuba.xades;
  *	&lt;/xsd:restriction&gt;
  * </code></pre>  
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public enum QualifierType {
 	OIDAsURI, OIDAsURN

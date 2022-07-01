@@ -22,6 +22,7 @@ import javax.xml.crypto.MarshalException;
 import javax.xml.crypto.XMLCryptoContext;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 import org.w3c.dom.Node;
 
 /**
@@ -36,7 +37,7 @@ import org.w3c.dom.Node;
  * &lt;/xsd:complexType&gt; 
  * </pre></code> 
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public abstract class AbstractAnyTypeElement extends XadesElement {
 	
@@ -49,8 +50,35 @@ public abstract class AbstractAnyTypeElement extends XadesElement {
 	@Override
 	protected void writeContent(XmlWriter xwriter, String nsPrefix, String dsPrefix, XMLCryptoContext context) 
 																							throws MarshalException {
-		if (content != null && !content.isEmpty())
+		if (!Utils.isNullOrEmpty(content))
 			for (Node n : content) 
 				xwriter.marshalStructure(new javax.xml.crypto.dom.DOMStructure(n), dsPrefix, context);		
+	}
+	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * <p>NOTE: As the other of the child elements may be semantically relevant the child elements must be in the same
+	 * order to be considered equal. 
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		
+		AbstractAnyTypeElement other = (AbstractAnyTypeElement) o;		
+		if (this.content == null && other.content == null)
+			return true;
+		else if (this.content != null && other.content != null) {
+			boolean isEqual = this.content.size() == other.content.size();
+			for (int i = 0; i < this.content.size() && isEqual; i++)
+				isEqual = this.content.get(i).isEqualNode(other.content.get(i));
+			return isEqual;
+		} else
+			return false;
 	}
 }

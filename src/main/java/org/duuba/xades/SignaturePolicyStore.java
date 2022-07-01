@@ -22,6 +22,8 @@ import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
 import org.apache.xml.security.utils.XMLUtils;
+import org.bouncycastle.util.Arrays;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * A representation of the <code>SignaturePolicyStore</code> element as defined in the <i>ETSI EN 319 132 v1.1.1</i> 
@@ -45,14 +47,14 @@ import org.apache.xml.security.utils.XMLUtils;
  * XadesSignatureFactory#newSignaturePolicyStore} methods on a factory instance configured for Xades version 
  * {@link XadesVersion#EN_319_132_V111}.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class SignaturePolicyStore extends XadesElement {
 
 	private static final QName ELEMENT_NAME = new QName(Constants.XADES_141_NS_URI, "SignaturePolicyStore", 
 															Constants.XADES_141_NS_PREFIX);
 	
-	private static final QName SPDOC_ELEMENT_NAME = new QName(Constants.XADES_141_NS_URI, "SignaturePolicyStore",
+	private static final QName SPDOC_ELEMENT_NAME = new QName(Constants.XADES_141_NS_URI, "SPDocSpecification",
 															Constants.XADES_141_NS_PREFIX);
 
 	
@@ -95,6 +97,27 @@ public class SignaturePolicyStore extends XadesElement {
 	 */
 	public String getSigPolDocLocalURI() {
 		return spDocReference;
+	}
+	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if(!super.equals(o))
+			return false;
+		
+		SignaturePolicyStore other = (SignaturePolicyStore) o;
+		
+		return Utils.nullSafeEqual(this.id, other.id)
+			&& Utils.nullSafeEqual(this.spDocReference, other.spDocReference)
+			&& Utils.nullSafeEqual(this.spDocId, other.spDocId)
+			&& Arrays.areEqual(this.spDocContent, other.spDocContent);
 	}
 	
 	@Override

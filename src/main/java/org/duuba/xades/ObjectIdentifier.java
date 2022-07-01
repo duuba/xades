@@ -29,7 +29,7 @@ import javax.xml.namespace.QName;
  * As the <code>QbjectIdentifierType</code> is re-used by other element declarations the <code>ObjectIdentifierType
  * </code> has its own abstract base class implementation.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */ 
 public class ObjectIdentifier extends AbstractObjectIdentifierTypeElement {
 	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "ObjectIdentifier", 

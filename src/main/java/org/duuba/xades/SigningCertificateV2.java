@@ -39,7 +39,8 @@ import javax.xml.namespace.QName;
  * {@link XadesSignatureFactory#newSigningCertificate} methods on a factory instance configured for Xades version {@link 
  * XadesVersion#EN_319_132_V111}.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
+ * @see AbstractCertIDTypeV2Element
  */
 public class SigningCertificateV2 extends SigningCertificate {
 	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "SigningCertificateV2", 

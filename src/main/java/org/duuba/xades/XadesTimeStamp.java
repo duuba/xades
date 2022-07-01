@@ -47,7 +47,7 @@ import org.apache.jcp.xml.dsig.internal.dom.DOMCanonicalizationMethod;
  * stamp data to the factory when creating elements that contain differently named elements of the same type, such as
  * for example <code>UnsignedSignatureProperties//SigAndRefsTimeStamp</code>.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class XadesTimeStamp extends AbstractGenericTimestampTypeElement {
 

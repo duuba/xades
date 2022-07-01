@@ -28,7 +28,7 @@ import java.security.cert.X509Certificate;
  * The factory will automatically return the correct implementation based on the {@link XadesVersion} used on 
  * initialisation of the factory.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public interface CertifiedRole {
 

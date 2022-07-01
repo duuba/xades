@@ -33,7 +33,7 @@ import org.w3c.dom.Node;
  * <p>A <code>ClaimedRole</code> instance may be created by invoking the {@link XadesSignatureFactory#newClaimedRole} 
  * method.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class ClaimedRole extends AbstractAnyTypeElement {
 	private final static QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "ClaimedRole", 

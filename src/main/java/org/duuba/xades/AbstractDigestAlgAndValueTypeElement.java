@@ -22,6 +22,7 @@ import javax.xml.crypto.dsig.XMLSignature;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
 import org.apache.xml.security.utils.XMLUtils;
+import org.bouncycastle.util.Arrays;
 
 /**
  * Is a base class for the representation of elements that are of type <code>DigestAlgAndValueType</code> as defined in 
@@ -35,7 +36,7 @@ import org.apache.xml.security.utils.XMLUtils;
  * &lt;/xsd:complexType&gt;
  * </pre></code> 
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public abstract class AbstractDigestAlgAndValueTypeElement extends XadesElement {
 	
@@ -59,6 +60,24 @@ public abstract class AbstractDigestAlgAndValueTypeElement extends XadesElement 
 	 */
 	public byte[] getDigestValue() {
 		return value;
+	}
+	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		else  {
+			AbstractDigestAlgAndValueTypeElement other = (AbstractDigestAlgAndValueTypeElement) o;
+			return this.algorithm.equals(other.algorithm) && Arrays.areEqual(this.value, other.value);
+		}
 	}
 
 	@Override

@@ -21,6 +21,7 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * A representation of the <code>DataObjectFormat</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1 </i>
@@ -41,7 +42,7 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * A <code>DataObjectFormat</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newDataObjectFormat} methods.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class DataObjectFormat extends XadesElement {
 	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "DataObjectFormat", 
@@ -97,6 +98,28 @@ public class DataObjectFormat extends XadesElement {
 		return encoding;
 	}
 
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if(!super.equals(o))
+			return false;
+		
+		DataObjectFormat other = (DataObjectFormat) o;
+		
+		return Utils.nullSafeEqual(this.objectRef, other.objectRef)
+			&& Utils.nullSafeEqual(this.description, other.description)
+			&& Utils.nullSafeEqual(this.objectId, other.objectId)
+			&& Utils.nullSafeEqual(this.mimeType, other.mimeType)
+			&& Utils.nullSafeEqual(this.encoding, other.encoding);
+	}
+	
 	@Override
 	protected QName getName() {
 		return ELEMENT_NAME;

@@ -21,6 +21,7 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * A representation of the <code>QualifyingProperties</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1</i>
@@ -40,7 +41,7 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * <p>A <code>QualifyingProperties</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newQualifyingProperties} methods.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class QualifyingProperties extends XadesElement {
 
@@ -91,6 +92,27 @@ public class QualifyingProperties extends XadesElement {
 	public UnsignedProperties getUnsignedProperties() {
 		return unsignedProps;
 	}
+	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		
+		QualifyingProperties other = (QualifyingProperties) o;
+		
+		return Utils.nullSafeEqual(this.id, other.id)
+			&& Utils.nullSafeEqual(this.target, other.target)
+			&& Utils.nullSafeEqual(this.signedProps, other.signedProps)
+			&& Utils.nullSafeEqual(this.unsignedProps, other.unsignedProps);
+	}
 
 	@Override
 	protected QName getName() {
@@ -107,7 +129,8 @@ public class QualifyingProperties extends XadesElement {
 		xwriter.writeAttribute("", null, "Target", target);
         
 		// Write child elements
-		signedProps.marshal(xwriter, dsPrefix, context);
+		if (signedProps != null)
+			signedProps.marshal(xwriter, dsPrefix, context);
 		if (unsignedProps != null)
 			unsignedProps.marshal(xwriter, dsPrefix, context);
 							

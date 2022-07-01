@@ -21,6 +21,7 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * A representation of the <code>SignatureProductionPlaceV2</code> element as defined in the <i>ETSI EN 319 132 V1.1.1</i> 
@@ -42,11 +43,11 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * XadesSignatureFactory#newSignatureProductionPlace} methods on a factory instance configured for Xades version 
  * {@link XadesVersion#EN_319_132_V111}.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class SignatureProductionPlaceV2 extends SignatureProductionPlace {
 
-	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "SignatureProductionPlace", 
+	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "SignatureProductionPlaceV2", 
 																	Constants.XADES_132_NS_PREFIX);
 	private String street;
 	
@@ -63,6 +64,22 @@ public class SignatureProductionPlaceV2 extends SignatureProductionPlace {
 		return street;
 	}
 
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		
+		return Utils.nullSafeEqual(this.street, ((SignatureProductionPlaceV2) o).street);
+	}
+	
 	@Override
 	protected QName getName() {
 		return 	ELEMENT_NAME;

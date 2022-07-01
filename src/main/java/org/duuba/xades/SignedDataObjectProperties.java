@@ -23,6 +23,7 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * A representation of the <code>SignedDataObjectProperties</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1
@@ -43,9 +44,9 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * 
  * <p>A <code>SignedDataObjectProperties</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newSignedDataObjectProperties} methods.
- * <p><b>NOTE:</b> Currently there is no support for the inclusion of the time stamp related elements!
+ * <p><b>NOTE:</b> Currently there is no support for the inclusion of the time stamp related or custom elements!
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class SignedDataObjectProperties extends XadesElement {
 
@@ -82,6 +83,26 @@ public class SignedDataObjectProperties extends XadesElement {
 	 */
 	public List<CommitmentTypeIndication> getCommitments() {
 		return commitments;
+	}
+	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		
+		SignedDataObjectProperties other = (SignedDataObjectProperties) o;
+		
+		return Utils.nullSafeEqual(this.id, other.id)
+			&& Utils.areEqual(this.dataObjectFormats, other.dataObjectFormats)
+			&& Utils.areEqual(this.commitments, other.commitments);
 	}
 	
 	@Override

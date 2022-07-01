@@ -102,6 +102,26 @@ public class CommitmentTypeIndication extends XadesElement {
 		return ELEMENT_NAME;
 	}
 	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if(!super.equals(o))
+			return false;
+		
+		CommitmentTypeIndication other = (CommitmentTypeIndication) o;
+		
+		return Utils.nullSafeEqual(this.typeId, other.typeId)
+			&& Utils.areEqual(this.objectRefs, other.objectRefs)
+			&& Utils.areEqual(this.qualifiers, other.qualifiers);		
+	}
+	
 	@Override
 	protected void writeContent(XmlWriter xwriter, String nsPrefix, String dsPrefix, XMLCryptoContext context)
 			throws MarshalException {

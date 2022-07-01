@@ -21,6 +21,7 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * A representation of the <code>Include</code> element as defined in respectively <i>ETSI TS 101 903 
@@ -33,7 +34,7 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  *    </xsd:complexType>
  * </pre></code> 
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class Include extends XadesElement {
 	
@@ -61,6 +62,25 @@ public class Include extends XadesElement {
 	 */
 	public Boolean getReferencedData() {
 		return referencedData;
+	}
+	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if(!super.equals(o))
+			return false;
+		
+		Include other = (Include) o;
+		
+		return Utils.nullSafeEqual(this.uri, other.uri) 
+			&& Utils.nullSafeEqual(this.referencedData, other.referencedData);
 	}
 	
 	@Override

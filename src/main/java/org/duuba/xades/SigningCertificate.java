@@ -27,6 +27,7 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
 
 /**
  * A representation of the <code>SigningCertificate</code> element as defined in the <i>ETSI TS 101 903 V1.4.1</i> 
@@ -44,7 +45,7 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * {@link XadesSignatureFactory#newSigningCertificate} methods on a factory instance configured for Xades version {@link 
  * XadesVersion#TS_101_903_V141}.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class SigningCertificate extends XadesElement {
 	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "SigningCertificate", 
@@ -56,7 +57,7 @@ public class SigningCertificate extends XadesElement {
 	private List<AbstractCertIDTypeElement>		certInfo;
 	
 	SigningCertificate(final List<X509Certificate> certs, String digestMethod) throws NoSuchAlgorithmException {
-		if (certs.isEmpty())
+		if (certs == null  || certs.isEmpty())
 			throw new IllegalArgumentException("At least one certificate is required");
 		
 		certInfo = new ArrayList<>(certs.size());
@@ -91,6 +92,23 @@ public class SigningCertificate extends XadesElement {
 	public List<AbstractCertIDTypeElement> getCertificates() {
 		return certInfo;
 	}
+	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+
+		return Utils.areEqual(this.certInfo, ((SigningCertificate) o).certInfo);
+	}
+
 	
 	@Override
 	protected QName getName() {
