@@ -10,7 +10,7 @@ Duuba will automatically create the correct elements based on the specification 
 
 __________________
 
-For more information on Duuba visit the website at https://duuba.org  
+For more information on Duuba visit the project website at https://duuba.org  
 Lead developer: Sander Fieten  
 Code hosted at https://github.com/duuba/xades  
 Issue tracker https://github.com/duuba/xades/issues  
