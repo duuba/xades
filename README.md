@@ -26,6 +26,9 @@ Issue tracker https://github.com/duuba/xades/issues
 - Can handle large documents (tested with documents up to 1.2GB) 
 - Low memory usage
 
+## Prerequisites
+To use Duuba, you will need
+
 
 ## Using
 Duuba is built on top of the Apache Santuario library for the processing of XML signatures. 
