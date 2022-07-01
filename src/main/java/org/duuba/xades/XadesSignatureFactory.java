@@ -46,28 +46,26 @@ import org.apache.jcp.xml.dsig.internal.dom.DOMXMLSignatureFactory;
 import org.apache.jcp.xml.dsig.internal.dom.XMLDSigRI;
 import org.apache.xml.security.Init;
 import org.duuba.xades.AbstractEncapsulatedPKIDataTypeElement.Encoding;
+import org.duuba.xades.CommitmentTypeIndication.CommitmentTypeQualifier;
+import org.duuba.xades.SignaturePolicyIdentifier.SigPolicyQualifier;
 import org.w3c.dom.Node;
 
 /**
- * A factory for creating {@link XadesSignature} objects from scratch or for unmarshalling one from an <code>
- * ds:Signature</code> XML element. As Xades signatures are an extension of a regular XML signatures this factory class
- * only provides methods to create components which are specific to Xades signatures. Regular XML signature components 
- * must be created using the {@link XMLSignatureFactory} instance provided by this factory through the {@link 
- * #getXMLSignatureFactory()} method. Note that the factory just creates the structures as specified in the ETSI 
- * specifications but does not check on the additional requirements.    
- * <p>
- * <b></b>
- * <p>
+ * A factory for creating {@link XadesSignature} objects from scratch. As Xades signatures are an extension of a regular 
+ * XML signatures this factory class only provides methods to create components which are specific to Xades signatures. 
+ * Regular XML signature components must be created using the {@link XMLSignatureFactory} instance provided by this 
+ * factory through the {@link #getXMLSignatureFactory()} method. Note that the factory just creates the structures as 
+ * specified in the ETSI specifications but does not check on the additional requirements.    
  * <p>
  * <b>XAdES versions</b>
- * <p>This factory supports both ETSI specifications of XAdES, TS 101 903 and EN 319 132. The main difference between
- * these two versions is that for some of the qualifying properties EN 319 132 contains additional data or uses another 
- * representation of the same data. It therefore has included new versions of the corresponding XML element declarations
- * in the XML schema (the elements with "V2" suffix). There are also different classes to represent the different 
- * versions of these properties. This factory will return the correct implementation based on the set version when 
- * creating the factory instance.  
+ * <p>This factory supports both ETSI specifications of XAdES, <i>TS 101 903 V1.4.1</i> and <i>EN 319 132 V1.1.1</i>. 
+ * The main difference between these two versions is that for some of the qualifying properties EN 319 132 defines 
+ * additional data or uses another representation of the same data. It therefore has included new versions of the 
+ * corresponding XML element declarations in the XML schema (the elements with "V2" suffix). There are also different 
+ * classes to represent the different versions of these properties. This factory will return the correct implementation 
+ * based on the set version when creating the factory instance.  
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  * @see XMLSignatureFactory
  */
 public class XadesSignatureFactory {
@@ -179,11 +177,18 @@ public class XadesSignatureFactory {
 	 * Creates a <code>QualifyingProperties</code> with the specified parameters.
   	 *
 	 * @param target URI identifying the <code>ds:Signature</code> the properties apply to
-	 * @param signedProperties	the signed properties
+	 * @param signedProperties		the signed qualifying properties
+	 * @param unsignedProperties	the unsigned qualifying properties
 	 * @return	a <code>QualifyingProperties</code> instance
 	 */
-	public QualifyingProperties	newQualifyingProperties(final String target, final SignedProperties signedProperties) {
-		return new QualifyingProperties(null, target, signedProperties, null);
+	public QualifyingProperties	newQualifyingProperties(final String target, final SignedProperties signedProperties,
+														final UnsignedProperties unsignedProperties) {
+		if (target == null || target.isEmpty())
+			throw new IllegalArgumentException("Target signature to qualify must be specified");
+		if (signedProperties == null && unsignedProperties == null)
+			throw new IllegalArgumentException("Missing qualifying properties");
+		
+		return new QualifyingProperties(null, target, signedProperties, unsignedProperties);
 	}
 	
 	/**
@@ -385,7 +390,8 @@ public class XadesSignatureFactory {
 	
 	/**
 	 * Creates a <code>SignerRole</code> with the specified parameters. 
-	 * <p>NOTE: This kind of <code>SignerRole</code> is only supported in <i>EN 319 132 V1.1.1</i> based signatures.
+	 * <p>NOTE: <code>SignerRole</code>s including signed assertions are only supported in <i>EN 319 132 V1.1.1</i> 
+	 * based signatures.
 	 * 
 	 * @param claimedRoles		list of claimed roles
 	 * @param certifiedRoles 	list of certified roles
@@ -395,11 +401,8 @@ public class XadesSignatureFactory {
 	 */
 	public SignerRole newSignerRole(final List<ClaimedRole> claimedRoles, final List<CertifiedRole> certifiedRoles,
 									final List<SignedAssertion> assertions) {
-		if (version == XadesVersion.TS_101_903_V141 && assertions != null) 
-			throw new UnsupportedOperationException();
-		else 
-			return version == XadesVersion.TS_101_903_V141 ? new SignerRole(claimedRoles, certifiedRoles) 
-														   : new SignerRoleV2(claimedRoles, certifiedRoles, assertions);
+		return version == XadesVersion.TS_101_903_V141 ? new SignerRole(claimedRoles, certifiedRoles) 
+													   : new SignerRoleV2(claimedRoles, certifiedRoles, assertions);
 	}	
 	
 	/**
@@ -428,7 +431,7 @@ public class XadesSignatureFactory {
 	}
 	
 	/**
-	 * Creates a <code>CertifiedRole</code> based on a non X509 based certificate.  
+	 * Creates a <code>CertifiedRole</code> based on a non X509 certificate.  
 	 * <p>NOTE: This kind of <code>CertifiedRole</code> is only supported in <i>EN 319 132 V1.1.1</i> based signatures. 
 	 *  
 	 * @param content  the XML nodes that contain the data of the certified role
@@ -658,7 +661,7 @@ public class XadesSignatureFactory {
 	 * @param encoding  type of encoding used 
 	 * @return	a <code>EncapsulatedTimeStamp</code> instance
 	 */
-	public EncapsulatedTimeStamp newXEncapsulatedTimeStamp(final String id, final byte[] data, final Encoding encoding) {
+	public EncapsulatedTimeStamp newEncapsulatedTimeStamp(final String id, final byte[] data, final Encoding encoding) {
 		return new EncapsulatedTimeStamp(id, data, encoding);
 	}
 	

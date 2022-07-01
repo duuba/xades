@@ -38,7 +38,7 @@ import org.w3c.dom.Node;
  * signature this class' method signature is also the same as the {@link XMLSignature} interface with an additional
  * method to get the qualifying properties. 
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class XadesSignature {	
 	private XMLSignature			xmlSignature;

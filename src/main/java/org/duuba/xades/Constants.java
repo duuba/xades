@@ -19,6 +19,7 @@ package org.duuba.xades;
 /**
  * Defines constants used in the processing of the Xades signatures.  
  * 
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public interface Constants {
 	/**

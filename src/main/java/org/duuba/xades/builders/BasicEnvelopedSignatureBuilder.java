@@ -43,7 +43,7 @@ import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 import org.duuba.xades.CertifiedRole;
 import org.duuba.xades.ClaimedRole;
 import org.duuba.xades.CommitmentTypeIndication;
-import org.duuba.xades.CommitmentTypeQualifier;
+import org.duuba.xades.CommitmentTypeIndication.CommitmentTypeQualifier;
 import org.duuba.xades.DataObjectFormat;
 import org.duuba.xades.IObjectIdentifier;
 import org.duuba.xades.QualifyingProperties;
@@ -57,19 +57,23 @@ import org.duuba.xades.SigningCertificate;
 import org.duuba.xades.XadesSignature;
 import org.duuba.xades.XadesSignatureFactory;
 import org.duuba.xades.XadesVersion;
+import org.holodeckb2b.commons.util.Utils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Is a builder to assist in the creation of basic Xades signature which is enveloped by the XML document that is being
- * signed. 
- * <p>At least the signer's private key and certificate must be provided. All other information items are optional. 
+ * Is a builder to assist in the creation of a Xades baseline signature which is enveloped by the XML document that is 
+ * being signed. It supports both the B-B profile as defined <i>ETSI EN 319 132 v1.1.1</i> and the BES profile defined 
+ * in <i>ETSI TS 101 903 V1.4.1</i>. The main difference between these two versions is that for some of the qualifying 
+ * properties EN 319 132 defines additional data or uses another representation of the same data. 
+ * <p>At least the signer's private key and certificate must be provided. All other information items are optional. When
+ * creating a BES level signature as defined TS 101 903, values set for not supported qualifying attributes are ignored.  
  * On successful completion of the {@link #build()} method a new Xades signature is added as last element to the given
  * XML document.     
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class BasicEnvelopedSignatureBuilder {
 	
@@ -427,11 +431,11 @@ public class BasicEnvelopedSignatureBuilder {
 			final SigningCertificate certInfo = xadesFactory.newSigningCertificate(certs, digestAlg);
 			
 			SignatureProductionPlace signersLocation = null;
-			if ((signersStreet != null && !signersStreet.isEmpty())
-			 || (signersPostalCode != null && !signersPostalCode.isEmpty())
-			 || (signersCity != null && !signersCity.isEmpty())
-			 || (signersState != null && !signersState.isEmpty())
-			 || (signersCountry != null && !signersCountry.isEmpty())) 
+			if (!Utils.isNullOrEmpty(signersStreet)
+			 || !Utils.isNullOrEmpty(signersPostalCode)
+			 || !Utils.isNullOrEmpty(signersCity)
+			 || !Utils.isNullOrEmpty(signersState)
+			 || !Utils.isNullOrEmpty(signersCountry))
 				signersLocation = xadesFactory.newSignatureProductionPlace(signersCity, signersStreet, 
 																		   signersPostalCode, signersState, 
 																		   signersCountry);			
@@ -455,7 +459,7 @@ public class BasicEnvelopedSignatureBuilder {
 					certifiedRoles.add(xadesFactory.newCertifiedRole(getElementNodes(e)));
 			}
 			List<SignedAssertion> assertions = null;
-			if (roleAssertions != null) {
+			if (version == XadesVersion.EN_319_132_V111 && roleAssertions != null) {
 				assertions = new ArrayList<>();
 				for (Element e : roleAssertions)
 					assertions.add(xadesFactory.newSignedAssertion(getElementNodes(e)));
@@ -494,7 +498,7 @@ public class BasicEnvelopedSignatureBuilder {
 			final SignedProperties signedProps = xadesFactory.newSignedProperties(signedPropsId, sigProps, dataProps);
 			
 			// As there are no unsigned properties, we can now create the QualifyingProperties element
-			final QualifyingProperties qProps = xadesFactory.newQualifyingProperties("#" + signatureId, signedProps);
+			final QualifyingProperties qProps = xadesFactory.newQualifyingProperties("#" + signatureId, signedProps, null);
 			
 			signature = xadesFactory.newXadesSignature(signatureId, digestAlg, signingAlg, c14nAlg, ki, 
 													   Collections.singletonList(docRef), qProps, null);
@@ -527,11 +531,11 @@ public class BasicEnvelopedSignatureBuilder {
 		// Set defaults if no values specified
 		if (version == null)
 			version = DEFAULT_VERSION;
-		if (c14nAlg == null || c14nAlg.isEmpty())
+		if (!Utils.isNullOrEmpty(c14nAlg))
 			c14nAlg = DEFAULT_C14N_ALG;
-		if (digestAlg == null || digestAlg.isEmpty())
+		if (!Utils.isNullOrEmpty(digestAlg))
 			digestAlg = DEFAULT_DIGEST_ALG;
-		if (signingAlg == null || signingAlg.isEmpty())
+		if (!Utils.isNullOrEmpty(signingAlg))
 			signingAlg = DEFAULT_SIGNING_ALG;
 		
 		// Check required settings
@@ -542,7 +546,7 @@ public class BasicEnvelopedSignatureBuilder {
 		if (signingCertificate == null)
 			throw new IllegalStateException("Signing certificate not set");
 		
-		if (docOID != null && (docOID.getIdentifier() == null || docOID.getIdentifier().isEmpty()))
+		if (docOID != null && !Utils.isNullOrEmpty(docOID.getIdentifier()))
 			throw new IllegalStateException("The document OID must have an identifier value");
 		
 		if (commitments != null)

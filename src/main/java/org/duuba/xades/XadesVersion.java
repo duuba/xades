@@ -19,7 +19,7 @@ package org.duuba.xades;
 /**
  * Enumerates the versions of the XAdES specifications supported by this library. 
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public enum XadesVersion {
 	
