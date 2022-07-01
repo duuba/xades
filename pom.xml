@@ -5,7 +5,7 @@
 
 	<groupId>org.duuba.xades</groupId>
 	<artifactId>xades</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	
 	<name>Duuba Xades</name>
@@ -40,8 +40,8 @@
 		<developer>
 			<name>Sander Fieten</name>
 			<organization>Chasquis</organization>
-			<organizationUrl>http://chasquis-consulting.com/holodeck-b2b-support/</organizationUrl>
-			<email>sander at chasquis-consulting.com</email>
+			<organizationUrl>http://chasquis-messaging.com/</organizationUrl>
+			<email>sander at chasquis-messaging.com</email>
 			<roles>
 				<role>Architect</role>
 				<role>Lead developer</role>
@@ -65,8 +65,13 @@
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
-			<version>1.61</version>
+			<version>1.70</version>
 		</dependency>
+		<dependency>
+			<groupId>org.holodeckb2b.commons</groupId>
+			<artifactId>generic-utils</artifactId>
+			<version>1.1.1</version>		
+		</dependency>	
 		<!-- Testing -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
