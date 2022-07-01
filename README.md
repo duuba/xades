@@ -28,9 +28,13 @@ Issue tracker https://github.com/duuba/xades/issues
 
 
 ## Using
-Duuba is built on top of the Apache Santuario library for the processing of XML signatures. It follows the standard Java XML factory pattern and adds the classes and a factory methods for the elements representing the XAdES signature and its qualifying attributes. This means that you will need to use both the factory from Santuario to create the “normal” XML signature object and use `org.duuba.xades.XadesSignatureFactory` to create the XAdES specific ones. To ensure you use the correct XMLSignatureFactory instance use the `XadesSignatureFactory.getXMLSignatureFactory()` method.
+Duuba is built on top of the Apache Santuario library for the processing of XML signatures. 
+It follows the standard Java XML factory pattern and adds the classes and factory methods for the elements representing the XAdES signature and its qualifying attributes. 
+This means that you will need to use both the factory from Santuario to create the “normal” XML signature object and use `org.duuba.xades.XadesSignatureFactory` to create the XAdES specific ones. 
+To ensure you use the correct XMLSignatureFactory instance use the `XadesSignatureFactory.getXMLSignatureFactory()` method.
 
-To facilitate the creation of an enveloped XAdES baseline signature we have included a builder, `org.duuba.xades.builders.BasicEnvelopedSignatureBuilder``, that takes care of creating all necessary elements of the XAdES signature. You provide the private key, certificate and values for the qualifying properties to include and the builder will take care of constructing the XAdES signature.
+To facilitate the creation of an enveloped XAdES baseline signature we have included a builder, `org.duuba.xades.builders.BasicEnvelopedSignatureBuilder``, that takes care of creating all necessary elements of the XAdES signature. 
+You provide the private key, certificate and values for the qualifying properties to include and the builder will take care of constructing the XAdES signature.
 
 
 ## Contributing
