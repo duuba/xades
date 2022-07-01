@@ -34,7 +34,8 @@ This means that you will need to use both the factory from Santuario to create t
 To ensure you use the correct XMLSignatureFactory instance use the `XadesSignatureFactory.getXMLSignatureFactory()` method.
 
 To facilitate the creation of an enveloped XAdES baseline signature we have included a builder, `org.duuba.xades.builders.BasicEnvelopedSignatureBuilder``, that takes care of creating all necessary elements of the XAdES signature. 
-You provide the private key, certificate and values for the qualifying properties to include and the builder will take care of constructing the XAdES signature.
+You provide the private key, certificate and values for the qualifying properties to include and the builder will take care of constructing the XAdES signature. 
+An example of how the builder can be used to create the signature can be found in `[org.duuba.xades.examples.EnvelopedBBExample](src/test/java/org/duuba/xades/examples/EnvelopedBBExample.java)`.
 
 
 ## Contributing
