@@ -531,11 +531,11 @@ public class BasicEnvelopedSignatureBuilder {
 		// Set defaults if no values specified
 		if (version == null)
 			version = DEFAULT_VERSION;
-		if (!Utils.isNullOrEmpty(c14nAlg))
+		if (Utils.isNullOrEmpty(c14nAlg))
 			c14nAlg = DEFAULT_C14N_ALG;
-		if (!Utils.isNullOrEmpty(digestAlg))
+		if (Utils.isNullOrEmpty(digestAlg))
 			digestAlg = DEFAULT_DIGEST_ALG;
-		if (!Utils.isNullOrEmpty(signingAlg))
+		if (Utils.isNullOrEmpty(signingAlg))
 			signingAlg = DEFAULT_SIGNING_ALG;
 		
 		// Check required settings
