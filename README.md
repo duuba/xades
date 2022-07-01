@@ -17,8 +17,11 @@ Issue tracker https://github.com/duuba/xades/issues
   
 
 ## Features
-Duuba XAdes is a fast, compact and easy to use library.
 - Creates XAdes baseline signatures
+- can be used for signing EESSI documents
+- Fast - signing a 1.2GB takes 22 seconds
+- Compact 
+- Easy to use
 - Well documented in the code
 - Can handle large documents (tested with documents up to 1.2GB) 
 - Low memory usage
