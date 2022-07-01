@@ -19,7 +19,7 @@ import org.w3c.dom.Node;
 /**
  * Is an implementation of {@link XmlWriter} which builds a DOM object model which can be evaluated later by tests.
  *  
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  *
  */
 public class DOMXMLWriter implements XmlWriter {
@@ -138,7 +138,7 @@ public class DOMXMLWriter implements XmlWriter {
 
 	@Override
 	public XMLStructure getCurrentNodeAsStructure() {
-		throw new UnsupportedOperationException();
+		return new DOMStructure(current);
 	}
 
 	@Override

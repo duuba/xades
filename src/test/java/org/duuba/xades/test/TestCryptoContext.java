@@ -17,7 +17,7 @@ import javax.xml.crypto.dom.DOMCryptoContext;
  * Sub class of {@link DOMCryptoContext} which does not take any required parameters. Also has two additional methods
  * to get the test key pair or certificate.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class TestCryptoContext extends DOMCryptoContext {
 	
