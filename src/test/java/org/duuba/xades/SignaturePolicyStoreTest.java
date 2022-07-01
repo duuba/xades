@@ -109,17 +109,22 @@ class SignaturePolicyStoreTest {
 		SignaturePolicyStore sps7 = new SignaturePolicyStore(oid2, null, docRef1, id2);		
 		SignaturePolicyStore sps8 = new SignaturePolicyStore(oid2, null, docRef1, null);		
 		SignaturePolicyStore sps9 = new SignaturePolicyStore(T_ID, null, docRef1, id1);		
-		
+
+		SignaturePolicyStore sps10 = new SignaturePolicyStore(T_ID, docBytes1, docRef2, id1);
+		SignaturePolicyStore sps11 = new SignaturePolicyStore(oid2, null, docRef2, id1);
+
 		assertTrue(sps1.equals(new SignaturePolicyStore(T_ID, docBytes1, null, id1)));
 		assertFalse(sps1.equals(sps2));
 		assertFalse(sps1.equals(sps3));
 		assertFalse(sps1.equals(sps4));
 		assertFalse(sps1.equals(sps5));
 		assertFalse(sps1.equals(sps9));
+		assertFalse(sps1.equals(sps10));		
 		
 		assertTrue(sps6.equals(new SignaturePolicyStore(oid2, null, docRef1, id1)));
 		assertFalse(sps6.equals(sps7));
 		assertFalse(sps6.equals(sps8));
 		assertFalse(sps6.equals(sps9));		
+		assertFalse(sps6.equals(sps11));		
 	}
 }
