@@ -1,11 +1,33 @@
 # Duuba XAdES
-The Duuba XAdES library can be used for creating XML Advanced Electronic Signatures.
+Duuba XAdES is a library for creating XML advanced electronic signatures (XAdES) for sealing and signing. 
+Use it to create XAdES baseline signatures according to ETSI specifications *[TS 101 903 v1.4.1](https://www.etsi.org/deliver/etsi_ts/101900_101999/101903/01.04.01_60/ts_101903v010401p.pdf)* and *[EN 319 132 v1.1.1](https://www.etsi.org/deliver/etsi_en/319100_319199/31913201/01.01.01_60/en_31913201v010101p.pdf)*.  
+  
+Duuba supports both ETSI specifications of XAdES. 
+The main difference between these two specifications is that for some of the qualifying properties EN 319 132 defines additional data or uses another representation of the same data. 
+Duuba therefore includes new versions of the corresponding XML element declarations in the XML schema (the elements with "V2" suffix). 
+There are also different classes to represent the different versions of these properties. 
+Duuba will automatically create the correct elements based on the specification set when creating the signature. 
+
 __________________
 
 For more information on Duuba visit the website at https://duuba.org  
 Lead developer: Sander Fieten  
 Code hosted at https://github.com/duuba/xades  
-Issue tracker https://github.com/duuba/xades/issues
+Issue tracker https://github.com/duuba/xades/issues  
+  
+
+## Features
+Duuba XAdes is a fast, compact and easy to use library.
+- Creates XAdes baseline signatures
+- Well documented in the code
+- Can handle large documents (tested with documents up to 400 MB) 
+- Low memory usage
+
+
+## Using
+Duuba is built on top of the Apache Santuario library for the processing of XML signatures. It follows the standard Java XML factory pattern and adds the classes and a factory methods for the elements representing the XAdES signature and its qualifying attributes. This means that you will need to use both the factory from Santuario to create the “normal” XML signature object and use org.duuba.xades.XadesSignatureFactory to create the XAdES specific ones. To ensure you use the correct XMLSignatureFactory instance use the XadesSignatureFactory.getXMLSignatureFactory() method.
+
+To facilitate the creation of an enveloped XAdES baseline signature we have included a builder, org.duuba.xades.builders.BasicEnvelopedSignatureBuilder, that takes care of creating all necessary elements of the XAdES signature. You provide the private key, certificate and values for the qualifying properties to include and the builder will take care of constructing the XAdES signature.
 
 
 ## Contributing
