@@ -3,10 +3,10 @@ package org.duuba.xades.test;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.KeyStore;
+import java.security.KeyStore.PrivateKeyEntry;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableEntryException;
-import java.security.KeyStore.PrivateKeyEntry;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Enumeration;
@@ -22,7 +22,6 @@ import javax.xml.crypto.dom.DOMCryptoContext;
 public class TestCryptoContext extends DOMCryptoContext {
 	
 	public PrivateKeyEntry getKeyPair() {
-		PrivateKeyEntry key = null;
 		try {
 			final String keyFile = SignDoc.class.getClassLoader().getResource("signkey.p12").getPath();
 			final char[] keyPwd = "signer".toCharArray();
