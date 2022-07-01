@@ -26,6 +26,8 @@ import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.DOMTransform;
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
+import org.w3c.dom.Node;
 
 /**
  * A representation of the <code>SignaturePolicyIdentifier</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1
@@ -56,17 +58,12 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * <p>A <code>SignaturePolicyIdentifier</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newSignaturePolicyIdentifier} methods.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class SignaturePolicyIdentifier extends XadesElement {
 	
 	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "SignaturePolicyIdentifier", 
 			Constants.XADES_132_NS_PREFIX);
-	private static final QName SIG_POLICYID_QNAME = new QName(Constants.XADES_132_NS_URI, "SigPolicyId", 
-			Constants.XADES_132_NS_PREFIX);
-	private static final QName SIG_POLICYHASH_QNAME = new QName(Constants.XADES_132_NS_URI, "SigPolicyHash", 
-			Constants.XADES_132_NS_PREFIX);
-		
 	
 	private SigPolicyId	signaturePolicyId;
 	private List<Transform> transforms;
@@ -131,6 +128,26 @@ public class SignaturePolicyIdentifier extends XadesElement {
 		return qualifiers;
 	}
 	
+	/**
+	 * Determines whether the other object is an instance of the same class and represents the same element, i.e. has
+	 * the same content.
+	 * 
+	 * @param o 	the other object
+	 * @return 		<code>true</code> iff <code>o</code> represents the same element, i.e. has the same qualified name
+	 * 				and list of child elements.
+	 */	
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+		
+		SignaturePolicyIdentifier other = (SignaturePolicyIdentifier) o;
+		return Utils.nullSafeEqual(this.policyHash, other.policyHash)
+			&& Utils.nullSafeEqual(this.signaturePolicyId, other.signaturePolicyId)
+			&& Utils.areEqual(this.qualifiers, other.qualifiers)
+			&& Utils.areEqual(this.transforms, other.transforms);
+	}
+	
 	@Override
 	protected QName getName() {
 		return ELEMENT_NAME;
@@ -172,7 +189,9 @@ public class SignaturePolicyIdentifier extends XadesElement {
 	/**
 	 * A representation of the <code>SigPolicyId</code> element.
 	 */
-	public class SigPolicyId extends AbstractObjectIdentifierTypeElement {
+	public static class SigPolicyId extends AbstractObjectIdentifierTypeElement {
+		private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "SigPolicyId", 
+				Constants.XADES_132_NS_PREFIX);
 		
 		SigPolicyId(IObjectIdentifier source) {
 			super(source);
@@ -180,23 +199,40 @@ public class SignaturePolicyIdentifier extends XadesElement {
 
 		@Override
 		protected QName getName() {
-			return SIG_POLICYID_QNAME;
+			return ELEMENT_NAME;
 		}
 	}
 	
 	/**
 	 * A representation of the <code>SigPolicyHash</code> element.
 	 */
-	class SigPolicyHash extends AbstractDigestAlgAndValueTypeElement {
+	public static class SigPolicyHash extends AbstractDigestAlgAndValueTypeElement {
+		private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "SigPolicyHash", 
+				Constants.XADES_132_NS_PREFIX);
 
-		public SigPolicyHash(String digestAlg, byte[] digestVal) {
+		SigPolicyHash(String digestAlg, byte[] digestVal) {
 			super(digestAlg, digestVal);
 		}
 
 		@Override
 		protected QName getName() {
-			return SIG_POLICYHASH_QNAME;
+			return ELEMENT_NAME;
+		}		
+	}
+	
+	public static class SigPolicyQualifier extends AbstractAnyTypeElement {
+		private static final QName ELEMENT_NAME = 
+							new QName(Constants.XADES_132_NS_URI, "SigPolicyQualifier", Constants.XADES_132_NS_PREFIX);
+
+		SigPolicyQualifier(List<Node> content) {
+			super(content);
 		}
 		
+		@Override
+		protected QName getName() {
+			return ELEMENT_NAME;
+		}
+
 	}
+	
 }

@@ -23,6 +23,8 @@ import javax.xml.crypto.XMLCryptoContext;
 import javax.xml.namespace.QName;
 
 import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
+import org.holodeckb2b.commons.util.Utils;
+import org.w3c.dom.Node;
 
 /**
  * A representation of the <code>CommitmentTypeIndication</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1 </i>
@@ -38,18 +40,23 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
  * 		&lt;xsd:element name="CommitmentTypeQualifiers" type="CommitmentTypeQualifiersListType" minOccurs="0"/&gt;
  * 	&lt;/xsd:sequence&gt;
  * &lt;/xsd:complexType&gt;
+ * &lt;xsd:complexType name="CommitmentTypeQualifiersListType"&gt;
+ * 	&lt;xsd:sequence&gt;
+ * 		&lt;xsd:element name="CommitmentTypeQualifier" type="AnyType" minOccurs="0" maxOccurs="unbounded"/&gt;
+ * 	&lt;/xsd:sequence&gt;
+ * &lt;/xsd:complexType&gt;
  * </pre></code>
  * 
  * <p>
  * A <code>CommitmentTypeIndication</code> instance may be created by invoking one of the
- * {@link XadesSignatureFactory#newCommitmentTypeIndication} methods.
+ * {@link XadesSignatureFactory#newCommitmentTypeIndication} methods.<br/>
+ * A <code>CommitmentTypeQualifier</code> instance may be created by invoking the
+ * {@link XadesSignatureFactory#newCommitmentTypeQualifier} methods.
  * 
- * @author Sander Fieten (sander at holodeck-b2b.org)
+ * @author Sander Fieten (sander at chasquis-messaging.com)
  */
 public class CommitmentTypeIndication extends XadesElement {
 	private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "CommitmentTypeIndication", 
-															Constants.XADES_132_NS_PREFIX);
-	private static final QName TYPE_ID_QNAME = new QName(Constants.XADES_132_NS_URI, "CommitmentTypeId", 
 															Constants.XADES_132_NS_PREFIX);
 	private CommitmentTypeId	typeId;
 	private List<String>		objectRefs;
@@ -120,7 +127,9 @@ public class CommitmentTypeIndication extends XadesElement {
 	/**
 	 * A representation of the <code>CommitmentTypeId</code> element 
 	 */
-	public class CommitmentTypeId extends AbstractObjectIdentifierTypeElement {
+	public static class CommitmentTypeId extends AbstractObjectIdentifierTypeElement {
+		private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "CommitmentTypeId", 
+				Constants.XADES_132_NS_PREFIX);
 
 		CommitmentTypeId(IObjectIdentifier oid) {
 			super(oid);
@@ -128,8 +137,27 @@ public class CommitmentTypeIndication extends XadesElement {
 
 		@Override
 		protected QName getName() {
-			return TYPE_ID_QNAME;
+			return ELEMENT_NAME;
 		}
 		
+		
 	}
+	
+	/**
+	 * A representation of the <code>CommitmentTypeQualifier</code> element
+	 */
+	public static class CommitmentTypeQualifier extends AbstractAnyTypeElement {
+		private static final QName ELEMENT_NAME = new QName(Constants.XADES_132_NS_URI, "CommitmentTypeQualifier",
+															Constants.XADES_132_NS_PREFIX);
+			
+		CommitmentTypeQualifier(List<Node> content) {
+			super(content);
+		}
+
+		@Override
+		protected QName getName() {
+			return ELEMENT_NAME;
+		}
+
+	}	
 }
