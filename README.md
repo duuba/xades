@@ -27,6 +27,12 @@ Issue tracker https://github.com/duuba/xades/issues
 - Low memory usage
 
 ## Using
+As Duuba XAdES is available on Maven Central it can be easily included in your project using the following Maven coordinates:
+```xml
+	<groupId>org.duuba.xades</groupId>
+	<artifactId>xades</artifactId>
+	<version>1.0.0</version>
+```
 Duuba is built on top of the Apache Santuario library for the processing of XML signatures. 
 It follows the standard Java XML factory pattern and adds the classes and factory methods for the elements representing the XAdES signature and its qualifying attributes. 
 This means that you will need to use both the factory from Santuario to create the “normal” XML signature object and use `org.duuba.xades.XadesSignatureFactory` to create the XAdES specific ones. 
