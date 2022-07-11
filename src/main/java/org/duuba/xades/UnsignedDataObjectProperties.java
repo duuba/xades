@@ -29,7 +29,7 @@ import org.w3c.dom.Node;
 /**
  * A representation of the <code>UnsignedDataObjectProperties</code> element as defined in the <i>ETSI EN 319 132-1
  * V1.1.1</i> standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="UnsignedDataObjectProperties" type="UnsignedDataObjectPropertiesType"/&gt;
  * &lt;xsd:complexType name="UnsignedDataObjectPropertiesType"&gt;
  * 	&lt;xsd:sequence&gt;
@@ -37,7 +37,7 @@ import org.w3c.dom.Node;
  * 	&lt;/xsd:sequence&gt;
  * 	&lt;xsd:attribute name="Id" type="xsd:ID" use="optional"/&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * 
  * <p><b>NOTE:</b> As the are currently no unsigned qualifying properties specific to the signed data objects this
  * class is just an empty placeholder and there are no factory methods defined.  

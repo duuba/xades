@@ -27,14 +27,14 @@ import org.bouncycastle.util.Arrays;
 /**
  * Is a base class for the representation of elements that are of type <code>DigestAlgAndValueType</code> as defined in 
  * the <i>ETSI TS 101 903 V1.4.1</i> standard. The type is defined in the XML schema as:
- * <code><pre>
+ * <code>
  * &lt;xsd:complexType name="DigestAlgAndValueType"&gt; 
  * 	&lt;xsd:sequence&gt;
  *		&lt;xsd:element ref="ds:DigestMethod"/&gt;
  *		&lt;xsd:element ref="ds:DigestValue"/&gt;
  *	&lt;/xsd:sequence&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * 
  * @author Sander Fieten (sander at chasquis-messaging.com)
  */

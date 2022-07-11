@@ -28,7 +28,7 @@ import org.holodeckb2b.commons.util.Utils;
 /**
  * A representation of the <code>SignaturePolicyStore</code> element as defined in the <i>ETSI EN 319 132 v1.1.1</i> 
  * standard. The XML schema is defined as (note this element is in the "new" 1.4.1 namespace):
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="SignaturePolicyStore" type="SignaturePolicyStoreType"/&gt;
  * &lt;xsd:complexType name="SignaturePolicyStoreType"&gt;
  * 	&lt;xsd:sequence&gt;
@@ -41,7 +41,7 @@ import org.holodeckb2b.commons.util.Utils;
  * 	&lt;xsd:attribute name="Id" type="xsd:ID" use="optional"/&gt;
  * &lt;/xsd:complexType&gt;
  * &lt;xsd:element name="SPDocSpecification" type="xades:ObjectIdentifierType"/&gt;
- * </pre></code> 
+ * </code> 
  * 
  * <p>A <code>SignaturePolicyStore</code> instance may be created by invoking one of the {@link 
  * XadesSignatureFactory#newSignaturePolicyStore} methods on a factory instance configured for Xades version 

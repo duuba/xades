@@ -33,7 +33,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Represents a Xades signature structure, i.e. a <code>ds:Signature</code> that includes a <code>ds:Object<code> with a
+ * Represents a Xades signature structure, i.e. a <code>ds:Signature</code> that includes a <code>ds:Object</code> with a
  * <code>xades:QualifyingProperties</code> child. Because the Xades signature is an extension of the regular XML 
  * signature this class' method signature is also the same as the {@link XMLSignature} interface with an additional
  * method to get the qualifying properties. 
@@ -55,7 +55,7 @@ public class XadesSignature {
 	
 	/**
 	 * Get the <code>Signature</code> XML element representing this Xades signature. Note that this element is only 
-	 * available after the {@link #sign()} method has been called when creating the signature.   
+	 * available after the {@link #sign(DOMSignContext signContext)} method has been called when creating the signature.   
 	 * 
 	 * @return	the <code>Signature</code> XML element 
 	 */
@@ -146,9 +146,7 @@ public class XadesSignature {
 	 * in future versions to include Xades specific validation. 
 	 * <p><b>Therefore the specifications of this method will change!</b>
 	 *   
-	 * @param validateContext
-	 * @return
-	 * @throws XMLSignatureException
+     * {@inheritDoc}
 	 */
 	public boolean validate(XMLValidateContext validateContext) throws XMLSignatureException {
 		return xmlSignature.validate(validateContext);

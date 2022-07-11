@@ -26,7 +26,7 @@ import org.holodeckb2b.commons.util.Utils;
 /**
  * A representation of the <code>SigningCertificate</code> element as defined in the <i>ETSI TS 101 903 V1.4.1</i> 
  * standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="SignatureProductionPlace" type="SignatureProductionPlaceType"/&gt;
  * &lt;xsd:complexType name="SignatureProductionPlaceType"&gt;
  * 	&lt;xsd:sequence&gt;
@@ -36,7 +36,7 @@ import org.holodeckb2b.commons.util.Utils;
  * 		&lt;xsd:element name="CountryName" type="xsd:string" minOccurs="0"/&gt;
  * 	&lt;/xsd:sequence&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * 
  * <p>A <code>SignatureProductionPlace</code> instance may be created by invoking one of the {@link 
  * XadesSignatureFactory#newSignatureProductionPlace} methods on a factory instance configured for Xades version 

@@ -30,7 +30,7 @@ import org.holodeckb2b.commons.util.Utils;
  * Is a base class for the representation of elements that are of a type derived from the <code>GenericTimestampType
  * </code> as defined in respectively <i>ETSI TS 101 903 V1.4.1</i> and <i>ETSI EN 319 132 V1.1.1</i>. The type is 
  * defined in the XML schema as:
- * <code><pre>
+ * <code>
  * &lt;xsd:complexType name="GenericTimeStampType" abstract="true"&gt;
  *    &lt;xsd:sequence&gt;
  *       &lt;xsd:choice minOccurs="0"&gt;
@@ -44,8 +44,8 @@ import org.holodeckb2b.commons.util.Utils;
  *       &lt;/xsd:choice&gt;
  *    &lt;/xsd:sequence&gt;
  *    &lt;xsd:attribute name="Id" type="xsd:ID" use="optional"/&gt;
- * </xsd:complexType>
- * </pre></code> 
+ * &lt;/xsd:complexType&gt;
+ * </code> 
  * 
  * @author Sander Fieten (sander at chasquis-messaging.com)
  */

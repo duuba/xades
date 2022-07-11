@@ -69,7 +69,7 @@ public abstract class XadesElement extends DOMStructure {
 	 * class (and hence of <code>XadesElement</code>) and has the same QName as the current instance. 
 	 * 
 	 * @param o		the other object to compare with
-	 * @return		<code>true<code> iff <code>o</code> is of the same type and has the same qualified name
+	 * @return		<code>true</code> iff <code>o</code> is of the same type and has the same qualified name
 	 */
 	@Override
 	public boolean equals(Object o) {

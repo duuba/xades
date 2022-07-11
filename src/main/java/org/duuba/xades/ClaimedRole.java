@@ -26,9 +26,9 @@ import org.w3c.dom.Node;
  * A representation of the <code>ClaimedRole</code> element part of the <code>SignerRole</code> and <code>SignerRoleV2
  * </code> elements as defined in respectively <i>ETSI TS 101 903 V1.4.1</i> and <i>ETSI EN 319 132 V1.1.1</i>. The XML 
  * schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="ClaimedRole" type="AnyType"/&gt;
- * </pre></code>
+ * </code>
  *  
  * <p>A <code>ClaimedRole</code> instance may be created by invoking the {@link XadesSignatureFactory#newClaimedRole} 
  * method.

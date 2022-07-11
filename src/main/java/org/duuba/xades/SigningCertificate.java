@@ -32,14 +32,14 @@ import org.holodeckb2b.commons.util.Utils;
 /**
  * A representation of the <code>SigningCertificate</code> element as defined in the <i>ETSI TS 101 903 V1.4.1</i> 
  * standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="SigningCertificate" type="CertIDListType"/&gt;
  * &lt;xsd:complexType name="CertIDListType"&gt; 
  *	&lt;xsd:sequence&gt;
  *		&lt;xsd:element name="Cert" type="CertIDType" maxOccurs="unbounded"/&gt;
  *   &lt;/xsd:sequence&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * 
  * <p>A <code>SigningCertificate</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newSigningCertificate} methods on a factory instance configured for Xades version {@link 

@@ -25,9 +25,9 @@ import org.w3c.dom.Node;
 /**
  * A representation of the <code>SignedAssertion</code> element as defined in the <i>ETSI EN 319 132 V1.1.1</i> standard. 
  * The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="SignedAssertion" type="AnyType"/&gt;
- * </pre></code> 
+ * </code> 
  * 
  * <p>A <code>SignedAssertion</code> instance may be created by invoking the {@link 
  * XadesSignatureFactory#newSignedAssertion} method.

@@ -25,7 +25,7 @@ import org.apache.jcp.xml.dsig.internal.dom.DOMCanonicalizationMethod;
 /**
  * A representation of the <code>XAdESTimeStamp</code> element as defined in respectively <i>ETSI TS 101 903 
  * V1.4.1</i> and<i>ETSI EN 319 132 v1.1.1</i> standards. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="XAdESTimeStamp" type="XAdESTimeStampType"/&gt;
  * &lt;xsd:complexType name="XAdESTimeStampType"&gt;
  *    &lt;xsd:complexContent&gt;
@@ -41,8 +41,8 @@ import org.apache.jcp.xml.dsig.internal.dom.DOMCanonicalizationMethod;
  *          &lt;xsd:attribute name="Id" type="xsd:ID" use="optional"/&gt;
  *       &lt;/xsd:restriction&gt;
  *    &lt;/xsd:complexContent&gt;
- * </xsd:complexType>
- * </pre></code> 
+ * &lt;/xsd:complexType&gt;
+ * </code> 
  * <p>NOTE: Although this class represents the <code>XAdESTimeStamp</code> element it is also used to provide the time
  * stamp data to the factory when creating elements that contain differently named elements of the same type, such as
  * for example <code>UnsignedSignatureProperties//SigAndRefsTimeStamp</code>.

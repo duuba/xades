@@ -34,7 +34,7 @@ import org.apache.xml.security.algorithms.JCEMapper;
  * Is a base class for the representation of elements that are of type <code>CertIDType</code> as defined in <i>ETSI TS 
  * 101 903 V1.4.1</i>.
  * <p>The type is defined in the XML schema as:
- * <code><pre>
+ * <code>
  * &lt;xsd:complexType name="CertIDType"&gt; 
  * 	&lt;xsd:sequence&gt;
  *		&lt;xsd:element name="CertDigest" type="DigestAlgAndValueType"/&gt;
@@ -43,13 +43,13 @@ import org.apache.xml.security.algorithms.JCEMapper;
  *	&lt;xsd:attribute name="URI" type="xsd:anyURI" use="optional"/&gt; 
  * &lt;/xsd:complexType&gt;
  * 
- * &lt;complexType name="X509IssuerSerialType"> 
- *   &lt;sequence>
- *       &lt;element name="X509IssuerName" type="string"/>
- *       &lt;element name="X509SerialNumber" type="integer"/>
- *   &lt;/sequence>
- * &lt;/complexType>
- * </pre></code> 
+ * &lt;complexType name="X509IssuerSerialType"&gt; 
+ *   &lt;sequence&gt;
+ *       &lt;element name="X509IssuerName" type="string"/&gt;
+ *       &lt;element name="X509SerialNumber" type="integer"/&gt;
+ *   &lt;/sequence&gt;
+ * &lt;/complexType&gt;
+ * </code> 
  * 
  * @author Sander Fieten (sander at chasquis-messaging.com)
  */

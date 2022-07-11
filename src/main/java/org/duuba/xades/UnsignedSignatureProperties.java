@@ -26,7 +26,7 @@ import org.holodeckb2b.commons.util.Utils;
 /**
  * A representation of the <code>UnsignedSignatureProperties</code> element as defined in the <i>ETSI EN 319 132-1
  * V1.1.1</i> standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="UnsignedSignatureProperties" type="UnsignedSignaturePropertiesType"/&gt;
  * &lt;xsd:complexType name="UnsignedSignaturePropertiesType"&gt;
  * 	&lt;xsd:choice maxOccurs="unbounded"&gt;
@@ -46,7 +46,7 @@ import org.holodeckb2b.commons.util.Utils;
  * 		&lt;xsd:any namespace="##other"/&gt;
  * 	&lt;/xsd:choice&gt;
  * 	&lt;xsd:attribute name="Id" type="xsd:ID" use="optional"/&gt;
- * &lt;/xsd:complexType&gt;</pre></code> 
+ * &lt;/xsd:complexType&gt;</code> 
  * Beside the child elements defined by the complex type the specification defines additional child elements in the
  * <i>1.4.1</i> schema that can be part of this element (of course only when a EN 319 132 conformant signature is 
  * created).   

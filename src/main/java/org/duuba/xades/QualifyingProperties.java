@@ -26,7 +26,7 @@ import org.holodeckb2b.commons.util.Utils;
 /**
  * A representation of the <code>QualifyingProperties</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1</i>
  * standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="QualifyingProperties" type="QualifyingPropertiesType"/&gt;
  * &lt;xsd:complexType name="QualifyingPropertiesType"&gt; 
  *	&lt;xsd:sequence&gt;
@@ -36,7 +36,7 @@ import org.holodeckb2b.commons.util.Utils;
  *	&lt;xsd:attribute name="Target" type="xsd:anyURI" use="required"/&gt;
  *	&lt;xsd:attribute name="Id" type="xsd:ID" use="optional"/&gt; 
  * &lt;/xsd:complexType&gt;
- * </pre></code>
+ * </code>
  *
  * <p>A <code>QualifyingProperties</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newQualifyingProperties} methods.

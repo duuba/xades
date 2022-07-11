@@ -318,9 +318,9 @@ public class XadesSignatureFactory {
 	/**
 	 * Creates a <code>SignaturePolicyIdentifier</code> that contains an explicit reference to a signature policy.
 	 * 
-	 * @param policyId
-	 * @param policyDigestAlgoritm
-	 * @param policyHash
+	 * @param policyId		the policy's identifier
+	 * @param policyDigestAlgoritm	the digest algorithm used to calculate the hash value
+	 * @param policyHash	the calculated hash value
 	 * @return a <code>SignaturePolicyIdentifier</code> instance
 	 */
 	public SignaturePolicyIdentifier newSignaturePolicyIdentifier(final IObjectIdentifier policyId, 

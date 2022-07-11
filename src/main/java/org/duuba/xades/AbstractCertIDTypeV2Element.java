@@ -32,7 +32,7 @@ import org.bouncycastle.asn1.x509.GeneralNames;
 /**
  * Is a base class for the representation of elements that are of type <code>CertIDTypeV2</code> as defined in 
  * the <i>ETSI EN 319 132-1 V1.1.1</i> standard. The type is defined in the XML schema as:
- * <code><pre>
+ * <code>
  * &lt;xsd:complexType name="CertIDTypeV2"&gt; 
  * 	&lt;xsd:sequence&gt;
  *		&lt;xsd:element name="CertDigest" type="DigestAlgAndValueType"/&gt;
@@ -40,7 +40,7 @@ import org.bouncycastle.asn1.x509.GeneralNames;
  *	&lt;/xsd:sequence&gt;
  *	&lt;xsd:attribute name="URI" type="xsd:anyURI" use="optional"/&gt; 
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * <p>As this type is almost the same as the <code>CertIDType</code> defined in <i>ETSI TS 101 903 V1.4.1</i>, only the
  * certificate's issuer and serial number representation is different, this class inherits from {@link 
  * AbstractCertIDTypeElement} and overrides the serialisation of the certificate's issuer and serial number. It re-uses

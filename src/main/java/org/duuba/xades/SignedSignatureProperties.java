@@ -30,7 +30,7 @@ import org.w3c.dom.Node;
 /**
  * A representation of the <code>SignedSignatureProperties</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1
  * </i> standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="SignedSignatureProperties" type="SignedSignaturePropertiesType"/&gt;
  * &lt;xsd:complexType name="SignedSignaturePropertiesType"&gt; 
  *	&lt;xsd:sequence&gt;
@@ -46,7 +46,7 @@ import org.w3c.dom.Node;
  * 	&lt;/xsd:sequence&gt;
  *	&lt;xsd:attribute name="Id" type="xsd:ID" use="optional"/&gt; 
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * 
  * <p>A <code>SignedSignatureProperties</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newSignedSignatureProperties} methods.

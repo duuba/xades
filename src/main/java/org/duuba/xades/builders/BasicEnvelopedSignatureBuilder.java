@@ -187,7 +187,7 @@ public class BasicEnvelopedSignatureBuilder {
 	/**
 	 * Sets the signing certificate that should be included in the signature. 
 	 * 
-	 * @param key	the signing certificate
+	 * @param cert	the signing certificate
 	 * @return	this builder
 	 */
 	public BasicEnvelopedSignatureBuilder setSigningCertificate(X509Certificate cert) {
@@ -199,7 +199,7 @@ public class BasicEnvelopedSignatureBuilder {
 	 * Sets the certificate path that should be included in the signature. The path should only contain the certificates
 	 * of the certificate authorities and MUST NOT include the leaf certificate used for signing. 
 	 * 
-	 * @param key	the certificate path
+	 * @param certPath	the certificate path
 	 * @return	this builder
 	 */
 	public BasicEnvelopedSignatureBuilder setCertificatePath(List<X509Certificate> certPath) {
@@ -575,7 +575,7 @@ public class BasicEnvelopedSignatureBuilder {
 	}
 	
 	/**
-	 * Gets the content of an {@link Element} object as a list of {@list Node}s.
+	 * Gets the content of an {@link Element} object as a list of {@link Node}s.
 	 * 
 	 * @param e element to get content of
 	 * @return	list of nodes contained in the element, 

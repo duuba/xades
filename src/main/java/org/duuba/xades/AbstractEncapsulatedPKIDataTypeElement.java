@@ -27,7 +27,7 @@ import org.holodeckb2b.commons.util.Utils;
 /**
  * Is a base class for the representation of elements that are of type <code>EncapsulatedPKIDataType</code> as defined 
  * in the <i>ETSI EN 319 132 V1.1.1</i> standard. The type is defined in the XML schema as:
- * <code><pre>
+ * <code>
  * &lt;xsd:complexType name="EncapsulatedPKIDataType"&gt;
  * 	&lt;xsd:simpleContent&gt;
  * 		&lt;xsd:extension base="xsd:base64Binary"&gt;
@@ -36,7 +36,7 @@ import org.holodeckb2b.commons.util.Utils;
  * 		&lt;/xsd:extension&gt;
  * 	&lt;/xsd:simpleContent&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * 
  * @author Sander Fieten (sander at chasquis-messaging.com)
  */

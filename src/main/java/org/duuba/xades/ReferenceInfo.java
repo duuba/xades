@@ -26,7 +26,7 @@ import org.holodeckb2b.commons.util.Utils;
 /**
  * A representation of the <code>ReferenceInfo</code> element as defined in respectively <i>ETSI TS 101 903 
  * V1.4.1</i> and<i>ETSI EN 319 132 v1.1.1</i> standards. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="ReferenceInfo" type="ReferenceInfoType"/&gt;
  * &lt;xsd:complexType name="ReferenceInfoType"&gt;
  *    &lt;xsd:sequence&gt;
@@ -36,7 +36,7 @@ import org.holodeckb2b.commons.util.Utils;
  *    &lt;xsd:attribute name="Id" type="xsd:ID" use="optional"/&gt;
  *    &lt;xsd:attribute name="URI" type="xsd:anyURI" use="optional"/&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * 
  * @author Sander Fieten (sander at chasquis-messaging.com)
  */

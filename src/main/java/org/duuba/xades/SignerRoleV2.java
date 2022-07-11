@@ -26,9 +26,9 @@ import org.apache.jcp.xml.dsig.internal.dom.XmlWriter;
 import org.holodeckb2b.commons.util.Utils;
 
 /**
- * A representation of the <code>SignerRoleV2</code> element as defined in the <i>ETSI EN 319 132 V1.1.1</i>  standard. 
+ * A representation of the <code>SignerRoleV2</code> element as defined in the <i>ETSI EN 319 132 V1.1.1</i> standard. 
  * The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="SignerRoleV2" type="SignerRoleV2Type"/&gt;
  * &lt;xsd:complexType name="SignerRoleV2Type"&gt;
  * 	&lt;xsd:sequence&gt;
@@ -66,7 +66,7 @@ import org.holodeckb2b.commons.util.Utils;
  * 		&lt;xsd:element ref="SignedAssertion" maxOccurs="unbounded"/&gt;
  * 	&lt;/xsd:sequence&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * 
  * <p>A <code>SignerRoleV2</code> instance may be created by invoking one of the {@link 
  * XadesSignatureFactory#newSignerRole} methods on a factory instance configured for Xades version {@link 

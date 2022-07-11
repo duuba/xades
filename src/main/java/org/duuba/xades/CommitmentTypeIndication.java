@@ -28,7 +28,7 @@ import org.w3c.dom.Node;
 
 /**
  * A representation of the <code>CommitmentTypeIndication</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1 </i>
- * standard. The XML schema is defined as: <code><pre>
+ * standard. The XML schema is defined as: <code>
  * &lt;xsd:element name="CommitmentTypeIndication" type="CommitmentTypeIndicationType"/&gt;
  * &lt;xsd:complexType name="CommitmentTypeIndicationType"&gt;
  * 	&lt;xsd:sequence&gt;
@@ -45,11 +45,11 @@ import org.w3c.dom.Node;
  * 		&lt;xsd:element name="CommitmentTypeQualifier" type="AnyType" minOccurs="0" maxOccurs="unbounded"/&gt;
  * 	&lt;/xsd:sequence&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code>
+ * </code>
  * 
  * <p>
  * A <code>CommitmentTypeIndication</code> instance may be created by invoking one of the
- * {@link XadesSignatureFactory#newCommitmentTypeIndication} methods.<br/>
+ * {@link XadesSignatureFactory#newCommitmentTypeIndication} methods.<br>
  * A <code>CommitmentTypeQualifier</code> instance may be created by invoking the
  * {@link XadesSignatureFactory#newCommitmentTypeQualifier} methods.
  * 

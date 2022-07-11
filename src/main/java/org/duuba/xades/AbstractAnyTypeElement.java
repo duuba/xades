@@ -28,14 +28,14 @@ import org.w3c.dom.Node;
 /**
  * Is a base class for the representation of elements that are of type <code>AnyType</code> as defined in respectively 
  * <i>ETSI TS 101 903 V1.4.1</i> and<i>ETSI EN 319 132 v1.1.1</i> standards. The type is defined in the XML schema as:
- * <code><pre>
+ * <code>
  * &lt;xsd:complexType name="AnyType" mixed="true"&gt; 
  * 	&lt;xsd:sequence minOccurs="0" maxOccurs="unbounded"&gt; 
  * 		&lt;xsd:any namespace="##any" processContents="lax"/&gt; 
  * 	&lt;/xsd:sequence&gt; 
  * 	&lt;xsd:anyAttribute namespace="##any"/&gt; 
  * &lt;/xsd:complexType&gt; 
- * </pre></code> 
+ * </code> 
  * 
  * @author Sander Fieten (sander at chasquis-messaging.com)
  */

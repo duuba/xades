@@ -32,7 +32,7 @@ import org.w3c.dom.Node;
 /**
  * A representation of the <code>SignaturePolicyIdentifier</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1
  * </i> standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="SignaturePolicyIdentifier" type="SignaturePolicyIdentifierType"/&gt;
  * &lt;xsd:complexType name="SignaturePolicyIdentifierType"&gt;
  * 	&lt;xsd:choice&gt;
@@ -53,8 +53,8 @@ import org.w3c.dom.Node;
  * 		&lt;xsd:element name="SigPolicyQualifier" type="AnyType" maxOccurs="unbounded"/&gt;
  * 	&lt;/xsd:sequence&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
- * 
+ * </code> 
+ *
  * <p>A <code>SignaturePolicyIdentifier</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newSignaturePolicyIdentifier} methods.
  * 

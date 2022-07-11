@@ -31,7 +31,7 @@ import org.w3c.dom.Node;
 /**
  * A representation of the <code>CertifiedRole</code> element part of <code>SignerRoleV2</code>as defined in the 
  * <i>ETSI EN 319 132 V1.1.1</i> standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:complexType name="CertifiedRolesListTypeV2"&gt;
  * 	&lt;xsd:sequence&gt;
  * 		&lt;xsd:element name="CertifiedRole" type="CertifiedRoleTypeV2" maxOccurs="unbounded"/&gt;
@@ -45,7 +45,7 @@ import org.w3c.dom.Node;
  * &lt;/xsd:complexType&gt;
  * &lt;xsd:element name="X509AttributeCertificate" type="EncapsulatedPKIDataType"/&gt;
  * &lt;xsd:element name="OtherAttributeCertificate" type="AnyType"/&gt;	
- * </pre></code>
+ * </code>
  *  
  * <p>A <code>CertifiedRoleV2</code> instance may be created by invoking one of the {@link 
  * XadesSignatureFactory#newCertifiedRole} methods on a factory instance configured for Xades version {@link 

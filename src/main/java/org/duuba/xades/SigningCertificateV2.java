@@ -26,14 +26,14 @@ import javax.xml.namespace.QName;
 /**
  * A representation of the <code>SigningCertificateV2</code> element as defined in the <i>ETSI EN 319 132 V1.1.1</i> 
  * standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="SigningCertificateV2" type="CertIDListType"/&gt;
  * &lt;xsd:complexType name="CertIDListTypeV2"&gt; 
  *	&lt;xsd:sequence&gt;
  *		&lt;xsd:element name="Cert" type="CertIDTypeV2" maxOccurs="unbounded"/&gt;
  *   &lt;/xsd:sequence&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * 
  * <p>A <code>SigningCertificate</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newSigningCertificate} methods on a factory instance configured for Xades version {@link 

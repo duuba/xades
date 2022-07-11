@@ -28,7 +28,7 @@ import org.holodeckb2b.commons.util.Utils;
 /**
  * A representation of the <code>SignedDataObjectProperties</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1
  * </i> standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="SignedDataObjectProperties" type="SignedDataObjectPropertiesType"/&gt;
  * &lt;xsd:complexType name="SignedDataObjectPropertiesType"&gt;
  * 	&lt;xsd:sequence&gt;
@@ -40,7 +40,7 @@ import org.holodeckb2b.commons.util.Utils;
  * 	&lt;/xsd:sequence&gt;
  * 	&lt;xsd:attribute name="Id" type="xsd:ID" use="optional"/&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code> 
+ * </code> 
  * 
  * <p>A <code>SignedDataObjectProperties</code> instance may be created by invoking one of the
  * {@link XadesSignatureFactory#newSignedDataObjectProperties} methods.

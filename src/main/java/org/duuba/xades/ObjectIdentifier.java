@@ -23,9 +23,9 @@ import javax.xml.namespace.QName;
 /**
  * A representation of the <code>QbjectIdentifier</code> element as defined in the <i>ETSI EN 319 132-1 V1.1.1</i>
  * standard. The XML schema is defined as: 
- * <code><pre>
+ * <code>
  * &lt;xsd:element name="QbjectIdentifier" type="QbjectIdentifierType"/&gt;
- * </pre></code>
+ * </code>
  * As the <code>QbjectIdentifierType</code> is re-used by other element declarations the <code>ObjectIdentifierType
  * </code> has its own abstract base class implementation.
  * 

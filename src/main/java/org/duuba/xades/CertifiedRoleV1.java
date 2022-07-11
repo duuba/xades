@@ -24,13 +24,13 @@ import javax.xml.namespace.QName;
 /**
  * A representation of the <code>CertifiedRole</code> element part of <code>SignerRole</code>as defined in the <i>ETSI 
  * TS 101 903 V1.4.1</i>  standard. The XML schema is defined as:
- * <code><pre>
+ * <code>
  * &lt;xsd:complexType name="CertifiedRolesListType"&gt;
  *	&lt;xsd:sequence&gt;
  * 		&lt;xsd:element name="CertifiedRole" type="EncapsulatedPKIDataType" maxOccurs="unbounded"/&gt;
  *	&lt;/xsd:sequence&gt;
  * &lt;/xsd:complexType&gt;
- * </pre></code>
+ * </code>
  *  
  * <p>A <code>CertifiedRoleV1</code> instance may be created by invoking one of the {@link 
  * XadesSignatureFactory#newCertifiedRole} methods on a factory instance configured for Xades version {@link 

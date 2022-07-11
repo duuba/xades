@@ -26,13 +26,13 @@ import org.holodeckb2b.commons.util.Utils;
 /**
  * A representation of the <code>Include</code> element as defined in respectively <i>ETSI TS 101 903 
  * V1.4.1</i> and<i>ETSI EN 319 132 v1.1.1</i> standards. The XML schema is defined as:
- * <code><pre>
+ * <code>
  *    &lt;xsd:element name="Include" type="IncludeType"/&gt;
  *    &lt;xsd:complexType name="IncludeType"&gt;
  * 		 &lt;xsd:attribute name="URI" type="xsd:anyURI" use="required"/&gt;
  *       &lt;xsd:attribute name="referencedData" type="xsd:boolean" use="optional"/&gt;
- *    </xsd:complexType>
- * </pre></code> 
+ *    &lt;/xsd:complexType&gt;
+ * </code> 
  * 
  * @author Sander Fieten (sander at chasquis-messaging.com)
  */
